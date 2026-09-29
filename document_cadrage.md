@@ -19,7 +19,13 @@ _Section finalisée à 14h30 après l'imprévu client._
 > *« On rédige beaucoup de courriers types (mise en demeure, transmission dossier). On voudrait un assistant pour aller plus vite, et aussi pour retrouver les bonnes jurisprudences en 30 secondes au lieu de 30 minutes. »*
 
 **Besoin réel reformulé :**  
-Le cabinet souffre d'une dispersion documentaire historique (courriers dupliqués sur postes individuels, modèles communs non maintenus depuis 2019, recherche orale informelle) qui ralentit la production juridique et fragilise la capitalisation du savoir. Le besoin réel consiste à **sécuriser et accélérer l'accès au fonds jurisprudentiel propre du cabinet** (~2 000 décisions bordelaises) et à **standardiser la pré-rédaction des courriers récurrents** (recouvrement et baux commerciaux) via un outil d'aide interne. L'enjeu central n'est pas une automatisation complète mais un **gain de productivité strict sans risque déontologique**, avec contrôle humain systématique (avocat signataire), sous contrainte budgétaire maîtrisée (15 000 € de mise en place) et dans un délai de 6 mois.
+Le cabinet fait face à une perte de temps quotidienne liée à l'éparpillement de son capital documentaire (recherche artisanale et mémoire orale pour retrouver des décisions passées, réécriture manuelle de courriers répétitifs). Le besoin réel est double : d'une part, **retrouver instantanément les décisions obtenues par le cabinet** pour étayer rapidement les dossiers sans dépendre du souvenir d'un confrère ; d'autre part, **éliminer la saisie redondante sur les actes récurrents** (recouvrement, baux commerciaux) tout en sécurisant la cohérence rédactionnelle.
+
+**Contraintes révélées en entretien :**  
+- **Déontologie & Secret professionnel :** Exigence absolue de confidentialité (art. 66-5, risque disciplinaire personnel devant le Barreau), exclusion stricte des hallucinations (citations 100 % vérifiables) et validation finale humaine obligatoire par l'avocat signataire.
+- **Budget :** Enveloppe fermée de 15 000 € pour la mise en place (Build), suivie d'un coût récurrent de quelques centaines d'euros par mois au maximum (Run).
+- **Échéance :** Pas d'urgence calendaire absolue ; le client privilégie formellement la fiabilité et la robustesse juridique à la rapidité de livraison (*« je préfère quelque chose de fiable dans six mois que risqué dans un mois »*).
+- **Équipe & Périmètre :** Usage strictement interne (12 avocats et leurs assistantes, aucun accès client externe) ciblé en priorité sur les contentieux récurrents et standardisés (recouvrement et baux commerciaux, exclusion du droit de la famille).
 
 ---
 
