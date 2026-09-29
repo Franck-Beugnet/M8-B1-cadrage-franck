@@ -81,6 +81,6 @@ _Relance non prévue ? Note-la aussi, avec la raison (« réponse surprenante su
 
 | Je n'ai pas pu demander / pas eu de réponse claire | Pourquoi c'est important | → §6 du cadrage |
 |---|---|---|
+| Conditions de réversibilité et restitution des données (Impact imprévu IT du 31/12) | Garantit au cabinet de pouvoir récupérer index, données et modèles en format ouvert sans verrouillage fournisseur s'il change de prestataire ou réinternalise. | §6 Questions ouvertes & §1 Synthèse |
 | Qualité exacte de l'OCR sur les décisions les plus anciennes (scans papier) | Si la qualité OCR est trop basse, risque d'erreurs d'indexation ou coût de retraitement à intégrer dans le budget initial. | §6 Questions ouvertes & §3 Données |
-| Caractéristiques techniques du serveur de fichiers local (OS, espace disque, accès API ou réseau) | Détermine si l'indexation peut s'exécuter directement on-premise ou via un connecteur sécurisé vers un cloud souverain. | §6 Questions ouvertes & §5 Architecture |
-| Processus précis de mise à jour du registre des décisions lors d'une nouvelle affaire gagnée/perdue | Nécessaire pour définir le pipeline d'ingestion continue (qui saisit les métadonnées et dépose le PDF). | §6 Questions ouvertes & §5 Architecture |
+| Modalités de transition avant le départ du prestataire au 31 décembre | Récupérer un export consolidé du serveur de fichiers local et du registre avant interruption du contrat. | §6 Questions ouvertes & §4 Risques |

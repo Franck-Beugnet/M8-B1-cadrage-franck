@@ -23,16 +23,16 @@ flowchart LR
         OCR --> ANON --> CHUNKER
     end
 
-    subgraph STOCK["3. Stockage Sécurisé Souverain"]
+    subgraph STOCK["3. Stockage Sécurisé Souverain Managé (SecNumCloud)"]
         direction TB
-        VDB[("Base Vectorielle locale<br/>(Embeddings souverains - ChromaDB)")]
-        SQLDB[("Base Métadonnées & Références<br/>(SQLite / PostgreSQL local)")]
+        VDB[("Base Vectorielle gérée<br/>(Embeddings souverains - ChromaDB/Qdrant)")]
+        SQLDB[("Base Métadonnées & Références<br/>(PostgreSQL managé / Sauvegarde auto)")]
     end
 
-    subgraph MOTOR["4. Moteur RAG & LLM Compact Souverain"]
+    subgraph MOTOR["4. Moteur RAG & LLM Compact Managé (PaaS Souverain FR)"]
         direction TB
         RETRIEVER["Moteur de Recherche & Filtrage<br/>(Filtre matière/date + similarité)"]
-        LLM["LLM Frugal Souverain<br/>(Mistral-7B / Llama-8B local ou SecNumCloud)"]
+        LLM["LLM Frugal Managé Souverain<br/>(Mistral-7B / Llama-8B infogéré - DPA strict)"]
         GROUNDING["Contrôle d'ancrage strict<br/>(Traçabilité sources 100% - Risque 🔴)"]
         RETRIEVER --> LLM --> GROUNDING
     end
@@ -82,11 +82,12 @@ flowchart LR
    - **OCR / Extraction de texte** : convertit les scans papier anciens et documents Word en texte brut exploitable.
    - **Module de pseudonymisation (Traitement Risque 🔴)** : masque systématiquement les noms de personnes physiques, coordonnées et données bancaires avant indexation ou transmission au modèle.
    - **Indexation hybride** : associe le texte vectorisé aux métadonnées pour permettre des recherches croisées (ex. *« bail commercial + issue favorable + clause résolutoire »*).
-3. **Stockage sécurisé souverain** :
-   - Base vectorielle légère (ChromaDB / Qdrant) et base relationnelle de métadonnées, hébergées en local sur le serveur du cabinet ou sur un cloud souverain français étanche.
-4. **Moteur RAG & LLM Compact Souverain** :
+3. **Stockage sécurisé souverain managé (SecNumCloud)** :
+   - Base vectorielle (ChromaDB / Qdrant) et base relationnelle de métadonnées, infogérées sur une infrastructure cloud française qualifiée SecNumCloud (ex. OVHcloud / Scaleway).
+   - **Réponse à l'imprévu informatique du 31/12** : évite tout maintien de serveur physique au cabinet en l'absence de prestataire IT, avec sauvegardes automatiques quotidiennes et clause contractuelle de réversibilité.
+4. **Moteur RAG & LLM Compact Managé Souverain** :
    - **Moteur de recherche sémantique** : retrouve les extraits pertinents en moins d'une minute via filtrage par facettes et similarité sémantique.
-   - **LLM compact (7B à 8B paramètres)** : génère le brouillon de courrier ou synthétise la décision en s'appuyant uniquement sur les documents transmis.
+   - **LLM compact (7B à 8B paramètres)** : service d'inférence infogéré souverain avec contrat DPA strict (aucune conservation ni réutilisation des requêtes pour l'entraînement).
    - **Contrôle d'ancrage strict (Grounding - Traitement Risque 🔴)** : garantit que chaque citation provient d'un document réel et génère un lien vérifiable vers la décision d'origine (tolérance zéro hallucination).
 5. **Interface métier & Contrôle humain obligatoire** :
    - Interface interne réservée aux assistantes et aux 12 avocats (pas d'ouverture web externe).

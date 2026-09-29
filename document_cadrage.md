@@ -7,9 +7,9 @@
 ---
 
 ## 1. Synthèse exécutive (5-6 lignes — rédigée EN DERNIER)
-_Section finalisée à 14h30 après l'imprévu client._
+Le Cabinet Maître Devalle fait face à une dispersion documentaire pénalisante et souhaite accélérer la recherche de ses décisions internes tout en fiabilisant ses courriers répétitifs (recouvrement et baux commerciaux). La solution retenue est un système documentaire augmenté (RAG sobre) combinant recherche sémantique sur métadonnées et génération encadrée via un modèle compact open source, sous contrôle humain obligatoire. L'ensemble est déployé sur un service souverain managé français (SecNumCloud) avec engagement contractuel DPA, garantissant le secret professionnel de l'avocat et une exploitation sans charge technique interne. Le projet vise un gain net d'une heure par jour par avocat et une recherche de décision en moins d'une minute, pour un budget de 15 000 € (Build) et moins de 300 €/mois (Run).
 
-> **Imprévu client (14h30) — ce que ça change** : _À renseigner lors de la réception de l'imprévu à 14h30._
+> **Imprévu client (14h30) — ce que ça change** : L'arrêt du contrat du prestataire informatique au 31 décembre supprime toute capacité de maintenance sur le serveur interne du cabinet. L'auto-hébergement on-premise devient intenable. L'arbitrage bascule vers une **infrastructure cloud souveraine managée (FR/UE, DPA, non-réentraînement)** qui concilie les deux impératifs : secret professionnel absolu et exploitation déléguée sans ressource informatique interne. Le risque d'interruption passe en 🔴 Rouge (continuité de service) et une clause de réversibilité des données est ajoutée en question ouverte (§6).
 
 ---
 
@@ -26,6 +26,7 @@ Le cabinet fait face à une perte de temps quotidienne liée à l'éparpillement
 - **Budget :** Enveloppe fermée de 15 000 € pour la mise en place (Build), suivie d'un coût récurrent de quelques centaines d'euros par mois au maximum (Run).
 - **Échéance :** Pas d'urgence calendaire absolue ; le client privilégie formellement la fiabilité et la robustesse juridique à la rapidité de livraison (*« je préfère quelque chose de fiable dans six mois que risqué dans un mois »*).
 - **Équipe & Périmètre :** Usage strictement interne (12 avocats et leurs assistantes, aucun accès client externe) ciblé en priorité sur les contentieux récurrents et standardisés (recouvrement et baux commerciaux, exclusion du droit de la famille).
+- **Capacité d'exploitation informatique (Imprévu 14h30) :** Arrêt du prestataire informatique au 31 décembre. Absence totale de compétences informatiques internes pour maintenir un serveur physique ; nécessité d'une exploitation déléguée à un tiers infogéré souverain avec SLA garanti.
 
 ---
 
@@ -65,7 +66,8 @@ L'assistant est utilisé **exclusivement en interne** par les assistantes juridi
 
 | Risque (éthique, métier, conformité) | 🔴/🟠/🟡 | Obligation ou raison | Traitement dans l'architecture |
 |---|---|---|---|
-| **Violation du secret professionnel de l'avocat** | 🔴 Rouge | Obligation d'ordre public (loi du 31/12/1971 art. 66-5 + déontologie Barreau). Sanctions disciplinaires et pénales directes. | **Hébergement souverain étanche certifié** (ou serveur on-premise) ; interdiction formelle de transit vers des API tierces non conformes ; chiffrement des données au repos et en transit. |
+| **Violation du secret professionnel de l'avocat** | 🔴 Rouge | Obligation d'ordre public (loi du 31/12/1971 art. 66-5 + déontologie Barreau). Sanctions disciplinaires et pénales directes. | **Hébergement souverain étanche certifié SecNumCloud** (ex. OVHcloud/Scaleway) ; contrat DPA interdisant la réutilisation des données ; chiffrement des données au repos et en transit. |
+| **Interruption de service & Perte de maintenance informatique (Imprévu 14h30)** | 🔴 Rouge *(passe de 🟠 à 🔴)* | Rupture du contrat du prestataire IT au 31/12 ; absence d'administrateur système interne au cabinet pour gérer un serveur local. | **Bascule de l'on-premise vers un service managé souverain (PaaS/SaaS sécurisé)** avec support technique inclus, sauvegardes automatiques et engagement de réversibilité complète. |
 | **Hallucination juridique ou fausse jurisprudence** | 🔴 Rouge | Responsabilité civile professionnelle (RCP) de l'avocat engagée ; risque de sanctions judiciaires pour fausse citation (jurisprudence inventée). | **Architecture RAG avec ancrage strict (Grounding)** : le modèle n'a pas le droit de citer une source hors du corpus injecté ; chaque citation génère un lien direct et cliquable vers le PDF d'origine. |
 | **Fuite de données personnelles de clients/justiciables (RGPD)** | 🔴 Rouge | Art. 32 RGPD (sécurité des traitements de données sensibles et judiciaires). | Module de **pseudonymisation / masquage automatique des PII** (noms, adresses, coordonnées bancaires) avant transmission au moteur sémantique. |
 | **Obsolescence de la règle de droit citée** | 🟠 Orange | Risque d'erreur de conseil si une décision interne de 2012 applique un texte abrogé. | Filtrage temporel dans les métadonnées et alerte visuelle de date dans l'interface invitant l'avocat à vérifier la validité actuelle sur sa base en ligne. |
@@ -88,8 +90,8 @@ L'assistant est utilisé **exclusivement en interne** par les assistantes juridi
 _Renvoi vers `schema_archi_cible.md` pour le diagramme complet Mermaid (composants : Ingestion/OCR, Base vectorielle & métadonnées, Module de pseudonymisation, Moteur RAG & LLM souverain, Interface métier / plugin Word)._
 
 **Sobriété argumentée (LLM retenu ou refusé) :**  
-Pour ce projet, **un modèle de fondation propriétaire géant américain (ex. GPT-4) est formellement refusé** en raison de l'interdit déontologique de fuite des données (secret professionnel), du coût récurrent imprévisible au token et de son surdimensionnement écologique.  
-Nous retenons une approche frugale et souveraine : **un modèle compact open-source spécialisé (ex. Mistral 7B / Llama 8B) déployé en local sur le serveur du cabinet ou hébergé sur un cloud souverain français**, couplé à une base vectorielle légère (ex. ChromaDB/Qdrant) et à un filtrage préalable sur métadonnées SQL/CSV. Ce choix garantit la stricte confidentialité, respecte l'enveloppe de 15 000 € de build et limite le coût récurrent à moins de 200 €/mois.
+Pour ce projet, **un modèle propriétaire grand public américain (ex. OpenAI GPT-4) est formellement refusé** en raison de l'incompatibilité avec le secret professionnel de l'avocat, du coût récurrent imprévisible au token et de son empreinte écologique démesurée.  
+L'auto-hébergement sur le serveur interne du cabinet étant devenu intenable avec le départ annoncé du prestataire informatique, nous retenons un **service souverain managé en France (SecNumCloud)** exécutant un **modèle compact open-source spécialisé (Mistral 7B ou Llama 8B)**, couplé à une base vectorielle légère et à un filtrage préalable sur métadonnées. Ce choix concilie secret professionnel absolu (DPA strict, 0 rétention), exploitation sans compétence technique interne, respect du budget initial de 15 000 € et récurrent maîtrisé à ~250 €/mois.
 
 ---
 
@@ -109,6 +111,6 @@ Nous retenons une approche frugale et souveraine : **un modèle compact open-sou
 3. **Mois 5-6 : Phase pilote en cabinet** avec 3 avocats et les assistantes, ajustements ergonomiques, formation déontologique et déploiement général aux 12 avocats.
 
 ### Questions ouvertes restant à clarifier avec le client (reprises de `notes_entretien.md` §3)
-1. **Qualité exacte de l'OCR sur les archives anciennes (scans papier)** : Quel est le pourcentage exact de scans papier non lisibles, et faut-il prévoir une prestation de numérisation/OCRisation professionnelle dans les 15 000 € ou se concentrer dans un premier temps sur les 5 dernières années déjà numérisées ?
-2. **Spécifications techniques du serveur local** : Quel est le système d'exploitation et la capacité de stockage/calcul du serveur physique au cabinet pour arbitrer entre un hébergement local pur ou une instance cloud souveraine managée (ex. OVHcloud / Scaleway SecNumCloud) ?
-3. **Gouvernance de mise à jour du registre** : Quel collaborateur sera désigné pour maintenir à jour le registre CSV/SQL des décisions au fur et à mesure des nouveaux jugements rendus par le TJ de Bordeaux ?
+1. **Conditions de réversibilité et restitution des données (Impact direct Imprévu IT)** : Quelles sont les clauses contractuelles de réversibilité exigées par le cabinet pour garantir que l'ensemble des index vectoriels, métadonnées et historiques de courriers puissent être récupérés à tout moment sous format standard ouvert en cas de changement de prestataire cloud ou de reprise en main par un nouveau mainteneur informatique ?
+2. **Qualité exacte de l'OCR sur les archives anciennes (scans papier)** : Quel est le pourcentage exact de scans papier non lisibles, et faut-il prévoir une prestation de numérisation/OCRisation professionnelle dans les 15 000 € ou se concentrer dans un premier temps sur les 5 dernières années déjà numérisées ?
+3. **Modalités de transition avant le 31 décembre** : Le prestataire sortant peut-il fournir d'ici son départ un export propre et consolidé de l'arborescence du serveur local et du registre des décisions vers le nouvel espace souverain sécurisé ?
